@@ -18,7 +18,7 @@ Dashboard web mínimo para crear jobs de VidForge a partir de registros de NocoD
 7. Si el estado es `completed`, guarda `Status = Done DD/MM` y toma el siguiente `Ready`.
 8. Si el estado es `failed` o `canceled`, guarda `Status = Failed`, detiene la cola y no procesa el siguiente registro.
 
-El estado operativo se guarda en `./data/state.json`. Si el contenedor se reinicia durante un job, la aplicación recupera el `VidForgeJobId` y continúa vigilándolo. No guarda claves en ese archivo.
+El estado operativo se guarda en `/app/data/state.json`, dentro del volumen Docker administrado `vidforge-launcher-data`. Si el contenedor se reinicia durante un job, la aplicación recupera el `VidForgeJobId` y continúa vigilándolo. No guarda claves en ese archivo.
 
 ## Requisitos
 
@@ -93,6 +93,8 @@ docker compose logs -f vidforge-launcher
 docker compose ps
 docker compose down
 ```
+
+El volumen `vidforge-launcher-data` se crea automáticamente. No cambies este montaje por `./data:/app/data` salvo que configures en el host permisos de escritura compatibles con el UID del usuario `node` del contenedor.
 
 El endpoint público de salud es `GET /health`.
 

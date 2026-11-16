@@ -11,6 +11,9 @@ services:
     ports:
       - "8067:3000"
     volumes:
-      - ./data:/app/data
+      - vidforge-launcher-data:/app/data
     security_opt:
       - no-new-privileges:true
+
+volumes:
+  vidforge-launcher-data:
