@@ -1,0 +1,18 @@
+services:
+  vidforge-launcher:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: vidforge-launcher
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      APP_PORT: 3000
+      STATE_FILE: /app/data/state.json
+    ports:
+      - "${APP_PORT:-3000}:3000"
+    volumes:
+      - ./data:/app/data
+    security_opt:
+      - no-new-privileges:true

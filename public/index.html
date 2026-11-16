@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>VidForgeLauncher</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">CONTROL DE PRODUCCIÓN</p>
+        <h1>VidForgeLauncher</h1>
+      </div>
+      <form action="/logout" method="post">
+        <button class="button button-quiet" type="submit">Cerrar sesión</button>
+      </form>
+    </header>
+
+    <main class="shell">
+      <section class="panel" aria-labelledby="projects-title">
+        <div class="panel-heading">
+          <div>
+            <h2 id="projects-title">Proyectos</h2>
+            <p>Selecciona un proyecto para iniciar su cola.</p>
+          </div>
+          <span id="connection" class="connection">Actualizando</span>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th class="select-column"><span class="sr-only">Seleccionar</span></th>
+                <th>Proyecto</th>
+                <th>Estado</th>
+                <th>Trabajo actual</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="select-column">
+                  <input id="energy-check" type="checkbox" aria-label="Seleccionar Energy">
+                </td>
+                <td><strong>Energy</strong></td>
+                <td><span id="status" class="status status-idle">Cargando</span></td>
+                <td>
+                  <div id="current-title" class="job-title">Sin trabajo activo</div>
+                  <div id="job-id" class="job-meta"></div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div id="message" class="message" role="status" aria-live="polite"></div>
+        <div id="error" class="error" role="alert" hidden></div>
+
+        <div class="actions">
+          <button id="start" class="button button-primary" type="button">Iniciar</button>
+          <button id="retry" class="button button-danger" type="button" hidden>Reintentar</button>
+        </div>
+      </section>
+
+      <section class="details" aria-label="Información del proceso">
+        <div>
+          <span>Última consulta</span>
+          <strong id="last-check">Todavía no realizada</strong>
+        </div>
+        <div>
+          <span>Próxima consulta</span>
+          <strong id="next-check">Sin programar</strong>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
